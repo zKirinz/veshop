@@ -1,0 +1,21 @@
+<header>
+    <div class="page-header min-vh-100" style="background-image: url(&#39;https://res.cloudinary.com/dq7l8216n/image/upload/v1635217868/PRJ301_Assignment_Hero.jpg;);" loading="lazy">
+        <span class="mask bg-gradient-dark opacity-5"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+                    <h1 class="text-white mb-4">VeShop</h1>
+                    <p class="text-white opacity-8 lead pe-5 me-5">Everyday is a good day to have vegetables <br/> The treasure of good life hidden in fruits and veggies.</p>
+                    <div class="buttons">
+                        <a href="${baseURL}/login" class="btn btn-white mt-4">
+                            Get Started
+                        </a>
+                        <a href="${baseURL}/product" class="btn text-white shadow-none mt-4">
+                            Play Around
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

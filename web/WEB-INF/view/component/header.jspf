@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg border-radius-xl top-0 z-index-fixed shadow-none position-absolute navbar-transparent my-3 py-2 start-0 end-0 mx-4">
+    <div class="container-fluid px-0">
+        <a class="navbar-brand font-weight-bolder text-white ms-sm-3" href="${baseURL}" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+            <c:choose>
+                <c:when test="${sessionScope.USER != NULL}">
+                    Welcome back <strong style="color: #4CAF50;">${sessionScope.USER.getName()}</strong>
+                </c:when>
+                <c:otherwise>Welcome to VeShop</c:otherwise>
+            </c:choose>
+        </a>
+        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-auto">
+                <c:choose>
+                    <c:when test="${sessionScope.USER.getRoleID() == 2}">
+                        <li class="nav-item dropdown dropdown-hover mx-2">
+                            <a href="${baseURL}/product" class="nav-link ps-2 d-flex cursor-pointer align-items-center" aria-expanded="false">
+                                <i class="fas fa-carrot opacity-6 me-2 text-md"></i>
+                                Product
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover mx-2">
+                            <a href="${baseURL}/category" class="nav-link ps-2 d-flex cursor-pointer align-items-center" aria-expanded="false">
+                                <i class="material-icons opacity-6 me-2 text-md"> receipt_long</i>
+                                Category
+                            </a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>  
+                        <li class="nav-item dropdown dropdown-hover mx-2">
+                            <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-carrot opacity-6 me-2 text-md"></i>
+                                Products
+                                <img src="${baseURL}/assets/img/down-arrow-white.svg" alt="down-arrow" class="arrow ms-2 d-lg-block d-none">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
+                                <div class="d-none d-lg-block">
+                                    <a href="${baseURL}/product" class="dropdown-item border-radius-md text-dark font-weight-bolder d-flex align-items-center px-1">
+                                        All Products
+                                    </a>
+                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                                        Category
+                                    </h6>
+                                    <c:forEach var="category" items="${requestScope.CATEGORIES}" >
+                                        <a href="${baseURL}/product?categoryID=${category.getCategoryID()}" class="dropdown-item border-radius-md">
+                                            <span>${category.getCategoryName()}</span>
+                                        </a>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:if test="${sessionScope.USER != null}">
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a href="${baseURL}/order" class="nav-link ps-2 d-flex cursor-pointer align-items-center" aria-expanded="false">
+                            <i class="material-icons opacity-6 me-2 text-md"> receipt_long</i>
+                            Orders 
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.USER.getRoleID() != 2}">
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a href="${baseURL}/cart" class="nav-link ps-2 d-flex cursor-pointer align-items-center" aria-expanded="false">
+                            <i class="material-icons opacity-6 me-2 text-md">shopping_cart</i>
+                            Cart &nbsp;<strong>(${sessionScope.CART == NULL ? 0 : sessionScope.CART.size()})</strong>
+                        </a>
+                    </li>
+                </c:if>
+
+                <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <c:choose>
+                        <c:when test="${sessionScope.USER != NULL}">
+                            <a href="${baseURL}/login?action=logout" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">
+                                <i class="fas fa-sign-out-alt" style="font-size: 1rem; margin-right: 5px;"></i>Logout
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${baseURL}/login" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">
+                                <i class="fas fa-sign-in-alt" style="font-size: 1rem; margin-right: 5px;"></i>Login
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

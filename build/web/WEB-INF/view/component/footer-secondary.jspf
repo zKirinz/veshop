@@ -1,0 +1,144 @@
+<footer class="footer pt-5 mt-5">
+    <div class="container">
+        <div class=" row">
+            <div class="col-md-3 mb-4 ms-auto">
+                <div>
+                    <a href="${baseURL}">
+                        <img src="${baseURL}/assets/img/favicon.png" class="mb-3 footer-logo" alt="main_logo">
+                    </a>
+                    <h6 class="font-weight-bolder mb-4">VeShop Corporation</h6>
+                </div>
+                <div>
+                    <ul class="d-flex flex-row ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="javascript:;">
+                                <i class="fab fa-facebook text-lg opacity-8"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="javascript:;">
+                                <i class="fab fa-twitter text-lg opacity-8"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="javascript:;">
+                                <i class="fab fa-dribbble text-lg opacity-8"></i>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="javascript:;">
+                                <i class="fab fa-github text-lg opacity-8"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link pe-1" href="javascript:;">
+                                <i class="fab fa-youtube text-lg opacity-8"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-6 mb-4">
+                <div>
+                    <h6 class="text-sm">Company</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                About Us
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Freebies
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Premium Tools
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-6 mb-4">
+                <div>
+                    <h6 class="text-sm">Help & Support</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Contact Us
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Knowledge Center
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Custom Development
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Sponsorships
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">
+                <div>
+                    <h6 class="text-sm">Legal</h6>
+                    <ul class="flex-column ms-n3 nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Terms & Conditions
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Privacy Policy
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;">
+                                Licenses (EULA)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="text-center">
+                    <p class="text-dark my-4 text-sm font-weight-normal">
+                        All rights reserved. Copyright &copy; <script>document.write(new Date().getFullYear())</script> VeShop Inc. by <a href="https://www.facebook.com/kien123456k/" target="_blank">Kirin Tran</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
