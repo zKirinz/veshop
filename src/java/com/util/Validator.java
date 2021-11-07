@@ -57,8 +57,9 @@ public class Validator {
     }
 
     public static boolean checkFullName(String fullName) {
-        final Pattern pattern = Pattern.compile("^[A-Za-z]([-']?[A-Za-z]+)*( [A-Za-z]([-']?[A-Za-z]+)*)+$", Pattern.CASE_INSENSITIVE);
-        final Matcher matcher = pattern.matcher(fullName);
-        return matcher.matches();
+        if (fullName.length() > 50) {
+            return false;
+        }
+        return true;
     }
 }
