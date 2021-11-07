@@ -17,6 +17,7 @@
   - Material Kit 2 - Free & Open Source Web UI Kit
 - Backend
   - Servlets - A Java class that extends the capabilities of the servers
+  - Log4j - A separate implementation with powerful logging features
   - JDBC - A Java API to connect and execute the query with the database
   - MS SQL - A relational database management system developed by Microsoft
 
@@ -28,7 +29,8 @@
 ## How to run
 - I built this application with Netbean 8.2 so maybe you can use Netbean IDE to make it more easily to import project.
 - If you use other IDE such as Eclipse or Intellij IDEA, you will need to find the way to config this project before use.
-- After import this project to IDE, you will need to change `DBHelperExample.java` to `DBHelper.java` and replace database connection information to suit your need.
+- After import this project to IDE, adding JSTL support (almost all IDE support adding JSTL lib) and all external library in `Lib_jar_files`.
+- Then, you will need to change `DBHelperExample.java` to `DBHelper.java` and replace database connection information to suit your need.
 
 ## Production
 - You can use Heroku to deploy since it supports [deploy with war file](https://devcenter.heroku.com/articles/war-deployment).
