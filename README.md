@@ -31,7 +31,8 @@
 - If you use other IDE such as Eclipse or Intellij IDEA, you will need to find the way to config this project before use.
 - After import this project to IDE, adding JSTL support (almost all IDE support adding JSTL lib) and all external library in `Lib_jar_files`.
 - Then, you will need to change `DBHelperExample.java` to `DBHelper.java` and replace database connection information to suit your need.
-
+- Finally, setup database with my `database.sql` scripts.
+- That's all, enjoy VeShop!.
 ## Production
 - You can use Heroku to deploy since it supports [deploy with war file](https://devcenter.heroku.com/articles/war-deployment).
 
