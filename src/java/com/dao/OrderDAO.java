@@ -17,8 +17,8 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class OrderDAO {
 
-    private final Logger log = LogManager.getLogger();
+    private final Logger LOGGER = Logger.getLogger(OrderDAO.class.getName());
 
     public Integer createOrder(Cart cart, UserDTO userInf, String address, Timestamp orderTime) throws CustomException {
         try (Connection con = DBHelper.getConnection()) {
@@ -85,14 +85,15 @@ public class OrderDAO {
 
                 if (success) {
                     con.commit();
-                    log.info("OrderDAO createOrder successfully");
+                    LOGGER.log(Level.INFO, "createOrder successfully");
                     return orderID;
                 } else {
-                    throw new CustomException("Attemp to order an unabled product");
+                    throw new CustomException("Something went wrong, please try again later");
                 }
 
             }
         } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "createOrder", e);
             if (e.getMessage().contains("CHK_ProductQuantity")) {
                 throw new CustomException("Not enought products in stock");
             }
@@ -114,12 +115,12 @@ public class OrderDAO {
                         orderList.add(new OrderDTO(rs.getInt("OrderID"), userID, rs.getTimestamp("OrderDate"),
                                 rs.getString("Address")));
                     }
-                    log.info("OrderDAO getCustomerOrders successfully");
+                    LOGGER.log(Level.INFO, "getCustomerOrders successfully");
                     return orderList;
                 }
             }
         } catch (Exception e) {
-            log.error("OrderDAO getCustomerOrders: " + e);
+            LOGGER.log(Level.SEVERE, "getCustomerOrders", e);
         }
         return null;
     }
@@ -136,12 +137,12 @@ public class OrderDAO {
                         orderList.add(new OrderDTO(rs.getInt("OrderID"), rs.getString("UserID"),
                                 rs.getTimestamp("OrderDate"), rs.getString("Address")));
                     }
-                    log.info("OrderDAO getAllOrders successfully");
+                    LOGGER.log(Level.INFO, "getAllOrders successfully");
                     return orderList;
                 }
             }
         } catch (Exception e) {
-            log.error("OrderDAO getAllOrders: " + e);
+            LOGGER.log(Level.SEVERE, "getAllOrders", e);
         }
         return null;
     }

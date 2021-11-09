@@ -14,8 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +23,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ProductDAO {
 
-    private final Logger log = LogManager.getLogger();
+    private final Logger LOGGER = Logger.getLogger(CategoryDAO.class.getName());
 
     public List<ProductDTO> getProducts() {
         try (Connection con = DBHelper.getConnection()) {
@@ -38,13 +38,13 @@ public class ProductDAO {
                                     rs.getInt("Price"), rs.getInt("CategoryID"));
                             productList.add(product);
                         }
-                        log.info("ProductDAO getProducts successfully");
+                        LOGGER.log(Level.INFO, "getProducts successfully");
                         return productList;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO getAvailableProduct" + e);
+            LOGGER.log(Level.SEVERE, "getProducts", e);
         }
         return null;
     }
@@ -61,14 +61,14 @@ public class ProductDAO {
                         if (rs.next()) {
                             ProductDTO product = new ProductDTO(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Image"), rs.getInt("Quantity"),
                                     rs.getInt("Price"), rs.getInt("CategoryID"));
-                            log.info("OrderDetailDAO getProductByID " + proID + " successfully");
+                            LOGGER.log(Level.INFO, "getProductByID " + proID + " successfully");
                             return product;
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO getAvailableProductByID" + e);
+            LOGGER.log(Level.SEVERE, "getProductByID", e);
         }
         return null;
     }
@@ -87,13 +87,13 @@ public class ProductDAO {
                                     rs.getInt("CategoryID"));
                             products.add(product);
                         }
-                        log.info("OrderDetailDAO getProductList successfully");
+                        LOGGER.log(Level.INFO, "getProductList successfully");
                         return products;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO getProductList: " + e);
+            LOGGER.log(Level.SEVERE, "getProductList", e);
         }
         return null;
     }
@@ -113,13 +113,13 @@ public class ProductDAO {
                     stm.setInt(6, updatedProduct.getProductID());
                     int result = stm.executeUpdate();
                     if (result == 1) {
-                        log.info("OrderDetailDAO updateProduct " + updatedProduct.getProductID() + " successfully");
+                        LOGGER.log(Level.INFO, "updateProduct " + updatedProduct.getProductID() + " successfully");
                         return true;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO updateProductList: " + e);
+            LOGGER.log(Level.SEVERE, "updateProduct", e);
         }
         return false;
     }
@@ -132,12 +132,12 @@ public class ProductDAO {
                 try (PreparedStatement stm = con.prepareStatement(queryString)) {
                     stm.setInt(1, productID);
                     int result = stm.executeUpdate();
-                    log.info("OrderDetailDAO deleteProduct " + productID + " successfully");
+                    LOGGER.log(Level.INFO, "deleteProduct " + productID + " successfully");
                     return result == 1;
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO deleteProduct: " + e);
+            LOGGER.log(Level.SEVERE, "deleteProduct", e);
             throw new CustomException("Cannot delete since there are orders associate with the product");
         }
         return false;
@@ -158,14 +158,14 @@ public class ProductDAO {
                     try (ResultSet rs = stm.executeQuery()) {
                         if (rs.next()) {
                             int productID = rs.getInt("ProductID");
-                            log.info("OrderDetailDAO deleteProduct " + productID + " successfully");
+                            LOGGER.log(Level.INFO, "createProduct " + productID + " successfully");
                             return productID;
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO createProduct: " + e);
+            LOGGER.log(Level.SEVERE, "createProduct", e);
         }
         return null;
     }
@@ -185,13 +185,13 @@ public class ProductDAO {
                                     rs.getInt("Price"), rs.getInt("CategoryID"));
                             productList.add(product);
                         }
-                        log.info("OrderDetailDAO getProductListByName " + searchName + " successfully");
+                        LOGGER.log(Level.INFO, "getProductListByName " + searchName + " successfully");
                         return productList;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("ProductDAO getProductListByName: " + e);
+            LOGGER.log(Level.SEVERE, "getProductListByName", e);
         }
         return null;
     }

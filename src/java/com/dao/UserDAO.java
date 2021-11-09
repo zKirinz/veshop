@@ -10,8 +10,8 @@ import com.util.DBHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class UserDAO {
 
-    private final Logger log = LogManager.getLogger();
+    private final Logger LOGGER = Logger.getLogger(CategoryDAO.class.getName());
 
     public UserDTO getUser(String userID, String password) {
         try (Connection con = DBHelper.getConnection()) {
@@ -33,14 +33,14 @@ public class UserDAO {
                     try (ResultSet rs = stm.executeQuery()) {
                         if (rs.next()) {
                             UserDTO user = new UserDTO(userID, rs.getString("Name"), rs.getInt("RoleID"));
-                            log.info("UserDAO getUser " + userID + " successfully");
+                            LOGGER.log(Level.INFO, "getUser " + userID + " successfully");
                             return user;
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("UserDAO getUser " + e.toString());
+            LOGGER.log(Level.SEVERE, "getUser", e);
         }
         return null;
     }
@@ -55,14 +55,14 @@ public class UserDAO {
                     stm.setString(1, userID);
                     try (ResultSet rs = stm.executeQuery()) {
                         if (rs.next()) {
-                            log.info("UserDAO checkUserID " + userID + " successfully");
+                            LOGGER.log(Level.INFO, "checkUserID " + userID + " successfully");
                             return true;
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("UserDAO checkUserID: " + e);
+            LOGGER.log(Level.SEVERE, "checkUserID", e);
         }
         return false;
     }
@@ -78,13 +78,13 @@ public class UserDAO {
                     stm.setString(3, newUser.getName());
                     int result = stm.executeUpdate();
                     if (result == 1) {
-                        log.info("UserDAO createUser " + newUser.getUserID() + " successfully");
+                        LOGGER.log(Level.INFO, "createUser " + newUser.getUserID() + " successfully");
                         return newUser;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("UserDAO createUser: " + e);
+            LOGGER.log(Level.SEVERE, "createUser", e);
         }
         return null;
     }

@@ -12,8 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class OrderDetailDAO {
 
-    private final Logger log = LogManager.getLogger();
+    private final Logger LOGGER = Logger.getLogger(OrderDAO.class.getName());
 
     public List<ProductDTO> getOrderDetails(int orderID) {
         try (Connection con = DBHelper.getConnection()) {
@@ -38,12 +38,12 @@ public class OrderDetailDAO {
                         proList.add(new ProductDTO(rs.getInt("ProductID"), rs.getString("ProductName"), rs.getString("Image"), rs.getInt("Quantity"),
                                 rs.getInt("Price"), rs.getInt("CategoryID")));
                     }
-                    log.info("OrderDetailDAO getOrderDetails " + orderID + " successfully");
+                    LOGGER.log(Level.INFO, "getOrderDetails " + orderID + " successfully");
                     return proList;
                 }
             }
         } catch (Exception e) {
-            log.error("OrderDetailDAO getOrderDetails: " + e);
+            LOGGER.log(Level.SEVERE, "getOrderDetails", e);
         }
         return null;
     }

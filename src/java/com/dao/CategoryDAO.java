@@ -13,8 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class CategoryDAO {
 
-    private final Logger log = LogManager.getLogger();
+    private final Logger LOGGER = Logger.getLogger(CategoryDAO.class.getName());
 
     public List<CategoryDTO> getCategories() {
         try (Connection conn = DBHelper.getConnection()) {
@@ -36,13 +36,13 @@ public class CategoryDAO {
                             CategoryDTO category = new CategoryDTO(rs.getInt("CategoryID"), rs.getNString("CategoryName"));
                             categoryList.add(category);
                         }
-                        log.info("CategoryDAO getAvailableCategory successfully");
+                        LOGGER.log(Level.INFO, "getCategories successfully");
                         return categoryList;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("CategoryDAO getCategories " + e.toString());
+            LOGGER.log(Level.SEVERE, "getCategories", e);
         }
         return null;
     }
@@ -57,12 +57,12 @@ public class CategoryDAO {
                     stm.setString(1, updatedCategory.getCategoryName());
                     stm.setInt(2, updatedCategory.getCategoryID());
                     int result = stm.executeUpdate();
-                    log.info("CategoryDAO editCategory " + updatedCategory.getCategoryID() + " successfully");
+                    LOGGER.log(Level.INFO, "editCategory " + updatedCategory.getCategoryID() + " successfully");
                     return result == 1;
                 }
             }
         } catch (Exception e) {
-            log.error("CategoryDAO editCategory: " + e);
+            LOGGER.log(Level.SEVERE, "editCategory", e);
         }
         return false;
     }
@@ -75,12 +75,12 @@ public class CategoryDAO {
                 try (PreparedStatement stm = con.prepareStatement(queryString)) {
                     stm.setInt(1, categoryID);
                     int result = stm.executeUpdate();
-                    log.info("CategoryDAO deleteCategory " + categoryID + " successfully");
+                    LOGGER.log(Level.INFO, "deleteCategory " + categoryID + " successfully");
                     return result == 1;
                 }
             }
         } catch (Exception e) {
-            log.error("CategoryDAO deleteCategory: " + e);
+            LOGGER.log(Level.SEVERE, "deleteCategory", e);
             throw new CustomException("You need to delete all products that associate with the category first");
         }
         return false;
@@ -95,13 +95,13 @@ public class CategoryDAO {
                     stm.setString(1, newCategory.getCategoryName());
                     int result = stm.executeUpdate();
                     if (result == 1) {
-                        log.info("CategoryDAO deleteCategory " + newCategory.getCategoryName() + " successfully");
+                        LOGGER.log(Level.INFO, "createCategory " + newCategory.getCategoryName() + " successfully");
                         return newCategory;
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("CategoryDAO createCategory: " + e);
+            LOGGER.log(Level.SEVERE, "createCategory", e);
         }
         return null;
     }
