@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-4 position-relative">
                                     <div class="p-3 text-center">
-                                        <h1 class="text-gradient text-primary"><span id="state1" countTo="${requestScope.noProducts}">0</span>+</h1>
+                                        <h1 class="text-gradient text-primary"><span id="state1" countTo="100">0</span>+</h1>
                                         <h5 class="mt-3">Products</h5>
                                         <p class="text-sm font-weight-normal">Import from as well as export <br/> to all over the world.</p>
                                     </div>
