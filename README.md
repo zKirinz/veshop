@@ -1,6 +1,6 @@
 # <img src="./docs/images/logo.png" width="35" height="35" /> VeShop
 
-## [Try it here](https://veshop.herokuapp.com/)
+## [Live Demo](https://youtu.be/BNo_niAnhFk)
 
 **Note**: This application uses heroku free tier for production so it's maybe slow when startup, please be patient.
 
